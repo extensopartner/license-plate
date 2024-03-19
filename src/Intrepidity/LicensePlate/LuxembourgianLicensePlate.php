@@ -25,6 +25,12 @@ class LuxembourgianLicensePlate extends AbstractLicensePlate implements LicenseP
         $sidecodes[1] = '/^[A-Z]{1}[\d]{4}$/';                            // A 5000
         $sidecodes[2] = '/^[A-Z]{2}[\d]{3}$/';                         // AA 999
         $sidecodes[3] = '/^[A-Z]{2}[\d]{4}$/';                         // CD 5000
+        $sidecodes[4] = '/^[\d]{4}$/';  // a serie of 4 digits between 1000 and 9999
+        $sidecodes[5] = '/^[\d]{5}$/'; // a serie of 5 digits between 10000 and 99999.
+        $sidecodes[6] = '/^(1[0-9]|[1-9])$/';                         // gov, 1 – 19
+        $sidecodes[7] = '/^CD(1[0-9]|[1-9])$/';                         // gov, CD 1-19
+        $sidecodes[8] = '/^([2-4][0-9]|50)$/';                         // gov, 20 – 50
+        $sidecodes[9] = '/^CD([2-4][0-9]|50)$/';                         // gov, CD 20 – 50
 
         return $this->checkPatterns($sidecodes, $licenseplate);
     }
@@ -59,6 +65,8 @@ class LuxembourgianLicensePlate extends AbstractLicensePlate implements LicenseP
 
             case 2:
             case 3:
+            case 7:
+            case 9:
                 return substr($licenseplate, 0, 2) . ' ' . substr($licenseplate, 2);
         }
 
